@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PersonsService } from './persons.service';
 
 @Component({
   selector: 'app-persons-import',
@@ -6,11 +7,9 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./persons-input.component.scss']
 })
 export class PersonsImportComponent implements OnInit {
-
-  @Output() personCreate = new EventEmitter<string>();
   public enteredPersonName = '';
 
-  constructor() {}
+  constructor( private ps: PersonsService) {}
 
   ngOnInit() {}
 
@@ -26,8 +25,10 @@ export class PersonsImportComponent implements OnInit {
    * Two way binding
   */
   public onCreateUser() {
-    console.log(this.enteredPersonName);
-    this.personCreate.emit(this.enteredPersonName);
-    this.enteredPersonName = '';
+  //   console.log(this.enteredPersonName);
+  //   this.personCreate.emit(this.enteredPersonName);
+  //   this.enteredPersonName = '';
+
+  this.ps.addPerson(this.enteredPersonName);
   }
 }
