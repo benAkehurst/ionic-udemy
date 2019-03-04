@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RecepiesService } from './recepies.service';
+import { Recepie } from './recepie.model';
 
 @Component({
   selector: 'app-recepies',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecepiesPage implements OnInit {
 
-  constructor() { }
+  public recepies: Recepie[];
+
+  constructor(private recepiesService: RecepiesService) { }
 
   ngOnInit() {
+    this.recepies = this.recepiesService.getAllRecepies();
   }
 
 }
