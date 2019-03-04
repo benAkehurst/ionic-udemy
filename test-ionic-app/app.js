@@ -5,6 +5,7 @@ const cancelBtn = document.querySelector('#button-cancel');
 const confirmBtn = document.querySelector('#button-confirm');
 const expensesList = document.querySelector('#expenses-list');
 const totalExpensesSpan = document.querySelector('#total-expenses');
+const alertCtrl = document.querySelector('ion-alert-controller');
 
 // Init running total of expenses
 let totalExpenses = 0;
@@ -22,6 +23,13 @@ confirmBtn.addEventListener('click', () => {
 
   // Validates inputs aren't empty
   if(enteredReason.trim().length <= 0 || enteredAmount <= 0 || enteredAmount.trim() <= 0) {
+    alertCtrl.create({
+      header: 'Invalid Inputs',
+      message: 'Please enter a valid reason and amount',
+      buttons: ['Okay']
+    }).then(alertElement => {
+      alertElement.present();
+    });
     return;
   }
   // Adds a new item to list of expenses
