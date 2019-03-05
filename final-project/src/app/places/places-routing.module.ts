@@ -9,7 +9,8 @@ const routes: Routes = [
     component: PlacesPage,
     children: [
       {
-        path: 'discover', children: [
+        path: 'discover',
+        children: [
           {
             path: '',
             loadChildren: './discover/discover.module#DiscoverPageModule'
@@ -40,8 +41,18 @@ const routes: Routes = [
             loadChildren: './offers/offer-bookings/offer-bookings.module#OfferBookingsPageModule'
           }
         ]
+      },
+      {
+        path: '',
+        redirectTo: '/places/tabs/discover',
+        pathMatch: 'full'
       }
     ]
+  },
+  {
+    path: '',
+    redirectTo: '/places/tabs/discover',
+    pathMatch: 'full'
   }
 ];
 
